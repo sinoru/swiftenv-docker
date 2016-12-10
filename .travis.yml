@@ -12,7 +12,7 @@ script:
   - docker build -t sinoru/swift .
   - docker ps -a
 
-  after_success:
+after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
     docker tag sinoru/swift sinoru/swift:latest
