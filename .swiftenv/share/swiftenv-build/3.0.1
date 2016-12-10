@@ -12,4 +12,9 @@ fetch_git swift-corelibs-foundation "$TAG" swift-corelibs-foundation
 fetch_git swift-corelibs-libdispatch "$TAG" swift-corelibs-libdispatch
 fetch_git swift-integration-tests "$TAG" swift-integration-tests
 fetch_git swift-xcode-playground-support "$TAG" swift-xcode-playground-support
-build_swift
+cd swift
+echo "Building Swift"
+echo "This may take a very long time..."
+
+./utils/build-script -R -T -- --install-prefix="$destination" >&3 2>&4
+cd "$TMP"
