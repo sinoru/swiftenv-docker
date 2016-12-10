@@ -6,11 +6,13 @@ ENV HOME="/root" \
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
     clang \
-    git && \
+    git \
+    && \
+    git clone https://github.com/sinoru/swiftenv.git $SWIFTENV_ROOT --branch verbose-fix \
+    && \
+    echo 'eval "$(swiftenv init -)"' >> ~/.bash_profile \
+    && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN git clone https://github.com/sinoru/swiftenv.git $SWIFTENV_ROOT --branch verbose-fix && \
-    echo 'eval "$(swiftenv init -)"' >> ~/.bash_profile
 
 ADD .swiftenv/share/swiftenv-build/* $SWIFTENV_ROOT/share/swiftenv-build/
 
