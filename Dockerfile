@@ -1,12 +1,12 @@
 FROM debian:stable-slim
 
-ENV HOME="/root" \
-    SWIFTENV_ROOT="$HOME/.swiftenv" \
-    PATH="$SWIFTENV_ROOT/bin:$PATH"
+ENV SWIFTENV_ROOT="/root/.swiftenv" \
+    PATH="/root/.swiftenv/bin:$PATH"
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
     clang \
     git \
+    ca-certificates \
     && \
     git clone https://github.com/sinoru/swiftenv.git $SWIFTENV_ROOT --branch verbose-fix \
     && \
@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD .swiftenv/share/swiftenv-build/* $SWIFTENV_ROOT/share/swiftenv-build/
+
+RUN echo $SWIFTENV_ROOT
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
     cmake \
