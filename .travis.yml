@@ -5,7 +5,11 @@ language: generic
 services:
   - docker
 
+before_install:
+  - sudo apt-get update
+
 install:
+  - sudo apt-get install docker-engine
   - docker pull debian:stable-slim
 
 script:
@@ -14,8 +18,6 @@ script:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker tag sinoru/swiftenv sinoru/swiftenv:latest
-    docker push sinoru/swiftenv;
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    docker push sinoru/swiftenv sinoru/swiftenv:latest
     fi
-    
