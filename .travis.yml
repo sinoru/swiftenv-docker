@@ -9,7 +9,7 @@ install:
   - docker pull debian:stable-slim
 
 script:
-  - docker build --compress --squash -t sinoru/swiftenv .
+  - docker build --squash -t sinoru/swiftenv .
   - docker ps -a
 
 after_success:
