@@ -9,12 +9,12 @@ install:
   - docker pull debian:stable-slim
 
 script:
-  - docker build -t sinoru/swift .
+  - docker build -t sinoru/swiftenv .
   - docker ps -a
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker tag sinoru/swift sinoru/swift:latest
-    docker push sinoru/swift;
+    docker tag sinoru/swiftenv sinoru/swiftenv:latest
+    docker push sinoru/swiftenv;
     fi
