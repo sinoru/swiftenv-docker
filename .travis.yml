@@ -9,7 +9,7 @@ before_install:
   - sudo apt-get update
 
 install:
-  - sudo apt-get install docker-engine
+  - sudo apt-get upgrade docker-engine
   - docker pull debian:stable-slim
 
 script:
