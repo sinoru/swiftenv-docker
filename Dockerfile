@@ -10,6 +10,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     && \
     git clone https://github.com/sinoru/swiftenv.git $SWIFTENV_ROOT --branch verbose-fix \
     && \
-    echo 'eval "$(swiftenv init -)"' >> ~/.bash_profile \
+    echo 'eval "$(swiftenv init -)"' >> ~/.profile \
     && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
