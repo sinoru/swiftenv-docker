@@ -5,11 +5,15 @@ language: generic
 services:
   - docker
 
+before_install:
+  - sudo apt-get update
+
 install:
+  - sudo apt-get install docker-engine
   - docker pull debian:stable-slim
 
 script:
-  - docker build --squash -t sinoru/swiftenv .
+  - docker build --compress --squash -t sinoru/swiftenv .
   - docker ps -a
 
 after_success:
